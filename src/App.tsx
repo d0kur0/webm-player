@@ -1,27 +1,27 @@
-import type { Component } from 'solid-js';
+import { Navigate, Route, Routes } from "@solidjs/router";
 
-import logo from './logo.svg';
-import styles from './App.module.css';
+import { BySchema } from "./pages/BySchema";
+import { Settings } from "./pages/Settings";
+import { Shuffle } from "./pages/Shuffle";
+import { Thread } from "./pages/Thread";
+import { Threads } from "./pages/Threads";
 
-const App: Component = () => {
-  return (
-    <div class={styles.App}>
-      <header class={styles.header}>
-        <img src={logo} class={styles.logo} alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          class={styles.link}
-          href="https://github.com/solidjs/solid"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn Solid
-        </a>
-      </header>
-    </div>
-  );
+import { AppBar } from "./components/AppBar";
+
+const App = () => {
+	return (
+		<>
+			<AppBar />
+			<Routes>
+				<Route path="/shuffle" element={Shuffle} />
+				<Route path="/thread" component={Thread} />
+				<Route path="/threads" component={Threads} />
+				<Route path="/bySchema" component={BySchema} />
+				<Route path="/settings" component={Settings} />
+				<Route path="/" element={<Navigate href="/shuffle" />} />
+			</Routes>
+		</>
+	);
 };
 
 export default App;
